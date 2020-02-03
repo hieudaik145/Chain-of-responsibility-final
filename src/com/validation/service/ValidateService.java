@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.validation.config.BaoLucGiaDinhConfigBuilder;
 import com.validation.entity.BaoLucGiaDinh;
+import com.validation.entity.CoreObject;
 import com.validation.rules.ResultError;
 import com.validation.rules.RowValidate;
 
@@ -12,13 +13,13 @@ public class ValidateService {
 
 	RowValidateService rowValidateService = new RowValidateService();
 
-	public void applyValidate(List<Object> list) {
+	public void applyValidate(List<CoreObject> list) {
 
-		List<Object> pass = new ArrayList<>();
+		List<CoreObject> pass = new ArrayList<>();
 
 		List<ResultError> fail = new ArrayList<>();
 
-		for (Object object : list) {
+		for (CoreObject object : list) {
 
 			List<ResultError> resultErrors = rowValidateService.applyRowValidate(callConstantsRowCheck(object));
 			if (resultErrors.isEmpty()) {
@@ -27,13 +28,13 @@ public class ValidateService {
 				fail.addAll(resultErrors);
 			}
 		}
-		
+
 		for (ResultError resultError : fail) {
 			System.out.println(resultError.toString());
 		}
-		
-		for (Object object : pass) {
-			System.out.println(object.toString());
+
+		for (CoreObject object : pass) {
+			object.save();
 		}
 		System.out.println("end");
 
@@ -42,12 +43,12 @@ public class ValidateService {
 	public RowValidate callConstantsRowCheck(Object object) {
 
 		RowValidate rowValidate = null;
-		
-		if(object instanceof BaoLucGiaDinh) {
+
+		if (object instanceof BaoLucGiaDinh) {
 			rowValidate = BaoLucGiaDinhConfigBuilder.createRowValidate(object);
 		}
-		
+
 		return rowValidate;
-		
+
 	}
 }

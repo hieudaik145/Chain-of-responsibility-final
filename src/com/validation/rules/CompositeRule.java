@@ -28,6 +28,8 @@ public class CompositeRule extends ArrayList<Validator> implements Validator {
 	public CompositeResult validate(String value) {
 
 		CompositeResult result = new CompositeResult(size());
+		
+		
 
 		for (Validator rule : this) {
 

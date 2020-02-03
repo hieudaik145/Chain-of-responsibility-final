@@ -2,9 +2,9 @@ package com.validation.entity;
 
 import java.util.Date;
 
-public class BaoLucGiaDinh {
+public class BaoLucGiaDinh extends CoreObject{
 
-	private String id;
+	private int id;
 	
 	private String tenQuanHuyen;
 	
@@ -66,14 +66,15 @@ public class BaoLucGiaDinh {
 		this.chucVu = chucVu;
 	}
 
-	public BaoLucGiaDinh(String id, String tenQuanHuyen, int soHoGiaDinhBiBaoLuc, int namBaoCao, Date ngayBaoCaO,
+
+	public BaoLucGiaDinh(int id, String tenQuanHuyen, int soHoGiaDinhBiBaoLuc, int namBaoCao, Date ngayBaoCao,
 			String tenNguoiThucHienBaoCao, String chucVu) {
 		super();
 		this.id = id;
 		this.tenQuanHuyen = tenQuanHuyen;
 		this.soHoGiaDinhBiBaoLuc = soHoGiaDinhBiBaoLuc;
 		this.namBaoCao = namBaoCao;
-		this.ngayBaoCao = ngayBaoCaO;
+		this.ngayBaoCao = ngayBaoCao;
 		this.tenNguoiThucHienBaoCao = tenNguoiThucHienBaoCao;
 		this.chucVu = chucVu;
 	}
@@ -82,17 +83,26 @@ public class BaoLucGiaDinh {
 		super();
 	}
 
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
+	public Date getNgayBaoCao() {
+		return ngayBaoCao;
+	}
+
+	public void setNgayBaoCao(Date ngayBaoCao) {
+		this.ngayBaoCao = ngayBaoCao;
+	}
+
 	@Override
-	public String toString() {
-		return "save Bao Luc Gia Dinh " + id;
+	public void save() {
+		System.out.println("save Bao Luc Gia Dinh " + id);
 	}
 	
 	
